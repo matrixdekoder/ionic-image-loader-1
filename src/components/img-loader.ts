@@ -1,6 +1,7 @@
 import { Component, Input, Output, ElementRef, Renderer, OnInit, EventEmitter } from '@angular/core';
 import { ImageLoader } from '../providers/image-loader';
 import { ImageLoaderConfig } from '../providers/image-loader-config';
+import { normalizeURL } from 'ionic-angular';
 
 const propMap: any = {
   display: 'display',
@@ -188,7 +189,8 @@ export class ImgLoader implements OnInit {
     this.isLoading = !stopLoading;
     imageUrl = imageUrl.replace('http://localhost:8080', 'file://');
     console.log('File URl :-------> ' + imageUrl);
-
+    imageUrl = normalizeURL(imageUrl);
+    console.log('NormalizeURL :--------> ' + imageUrl);
     if (this._useImg) {
 
       // Using <img> tag
